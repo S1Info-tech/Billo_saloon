@@ -11,8 +11,10 @@
   /* --------------------------------------------------------------------------
    * 1. GLOBAL STATE & CONSTANTS
    * -------------------------------------------------------------------------- */
-  const canvas = document.getElementById('webgl-canvas');
-  const loadingVeil = document.getElementById('loading-veil');
+  let canvas = null;
+  let loadingVeil = null;
+  let isAppLoaded = false;
+  let is3DActive = false;
   
   // Camera & Director Coordinates
   const cameraCoord = {
@@ -26,15 +28,71 @@
 
   // Mouse Parallax Offsets
   const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-  const clock = new THREE.Clock();
+  let clock = null;
 
-  let scene, camera, renderer;
-  let keySpotLight, cyanRimLight, amberWallLight, ambientLight;
+  let scene = null;
+  let camera = null;
+  let renderer = null;
+  let keySpotLight = null;
+  let cyanRimLight = null;
+  let amberWallLight = null;
+  let ambientLight = null;
   let barberPoleTexture = null;
   let dustParticles = null;
   let shearsGroup = null;
   let straightRazorGroup = null;
   let chairGroup = null;
+
+  /**
+   * Safe WebGL Context Detection
+   */
+  function isWebGLAvailable() {
+    try {
+      const testCanvas = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && 
+        (testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl') || testCanvas.getContext('webgl2')));
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Safe Loading Screen Dismissal (Guaranteed to hide veil and reveal application)
+   */
+  function dismissLoadingScreen(mode = 'success') {
+    if (isAppLoaded) return;
+    isAppLoaded = true;
+
+    if (!loadingVeil) {
+      loadingVeil = document.getElementById('loading-veil');
+    }
+
+    if (loadingVeil) {
+      loadingVeil.classList.add('loaded');
+      setTimeout(() => {
+        if (loadingVeil) {
+          loadingVeil.style.display = 'none';
+          loadingVeil.style.pointerEvents = 'none';
+        }
+      }, 1000);
+    }
+    console.log(`[Billu Saloon] Application loaded successfully (mode: ${mode}).`);
+  }
+
+  /**
+   * Graceful Fallback Mode (If 3D/WebGL fails, renders luxury 2D atmosphere)
+   */
+  function activateFallbackMode(reason = 'unknown') {
+    is3DActive = false;
+    document.body.classList.add('three-fallback');
+    if (!canvas) {
+      canvas = document.getElementById('webgl-canvas');
+    }
+    if (canvas) {
+      canvas.style.display = 'none';
+    }
+    console.warn(`[Billu Saloon] Activated graceful atmospheric fallback (reason: ${reason}).`);
+  }
 
   /* --------------------------------------------------------------------------
    * 2. PROCEDURAL TEXTURE GENERATORS (Zero-dependency canvas textures)
@@ -225,6 +283,12 @@
    * 3. THREE.JS SCENE SETUP & LIGHTING
    * -------------------------------------------------------------------------- */
   function initThree() {
+    canvas = document.getElementById('webgl-canvas');
+    if (!canvas) {
+      throw new Error('Canvas #webgl-canvas element not found');
+    }
+    clock = new THREE.Clock();
+
     // 3.1 Scene & Camera
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x07090e, 0.045);
@@ -896,9 +960,7 @@
       // Intro Dolly-in from darkness into spotlight
       const introTl = gsap.timeline({
         onComplete: () => {
-          if (loadingVeil) {
-            loadingVeil.classList.add('loaded');
-          }
+          dismissLoadingScreen('3d-intro-complete');
         }
       });
 
@@ -915,20 +977,23 @@
       });
 
       // Key spotlight vintage neon/incandescent flicker ramp-up
-      introTl.to(keySpotLight, {
-        intensity: 2.5,
-        duration: 0.15,
-        ease: 'rough'
-      }, 0.8)
-      .to(keySpotLight, {
-        intensity: 0.4,
-        duration: 0.1
-      })
-      .to(keySpotLight, {
-        intensity: 8.5,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
+      if (keySpotLight) {
+        introTl.to(keySpotLight, {
+          intensity: 2.5,
+          duration: 0.15,
+          ease: 'power1.in'
+        }, 0.8)
+        .to(keySpotLight, {
+          intensity: 0.4,
+          duration: 0.1,
+          ease: 'power1.out'
+        })
+        .to(keySpotLight, {
+          intensity: 8.5,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      }
 
       // Fade in hero elements smoothly
       introTl.from('.hero-content > *', {
@@ -1355,10 +1420,11 @@
    * Main 60 FPS Render Loop with Damping & Procedural Animations
    */
   function animate() {
+    if (!is3DActive || !renderer || !scene || !camera) return;
     requestAnimationFrame(animate);
 
-    const delta = clock.getDelta();
-    const elapsedTime = clock.getElapsedTime();
+    const delta = clock ? clock.getDelta() : 0.016;
+    const elapsedTime = clock ? clock.getElapsedTime() : 0;
 
     // 9.1 Mouse Parallax Lerp Damping
     mouse.x += (mouse.targetX - mouse.x) * 0.05;
@@ -1410,13 +1476,73 @@
   }
 
   /* --------------------------------------------------------------------------
-   * 10. INITIALIZATION BOOTSTRAP
+   * 10. ROBUST STARTUP & LIFECYCLE CONTROLLER
    * -------------------------------------------------------------------------- */
-  window.addEventListener('DOMContentLoaded', () => {
-    initThree();
-    initCameraDirector();
-    initUI();
-    animate();
-  });
+  function initializeApplication() {
+    console.log('[Billu Saloon] Bootstrapping application...');
+    loadingVeil = document.getElementById('loading-veil');
+    canvas = document.getElementById('webgl-canvas');
+
+    // 10.1 UI Interactivity initialized FIRST (guarantees buttons, booking form, audio work)
+    try {
+      initUI();
+    } catch (uiErr) {
+      console.warn('[Billu Saloon] UI initialization notice:', uiErr);
+    }
+
+    // 10.2 Hard Safety Timeout: Guarantee loading screen never blocks application indefinitely
+    const safetyTimeout = setTimeout(() => {
+      if (!isAppLoaded) {
+        console.warn('[Billu Saloon] Safety timeout triggered (3.0s). Dismissing loading veil.');
+        if (!is3DActive) {
+          activateFallbackMode('timeout');
+        }
+        dismissLoadingScreen('safety-timeout');
+      }
+    }, 3000);
+
+    // 10.3 Attempt 3D Atmosphere Initialization
+    let threeReady = false;
+    try {
+      if (typeof THREE === 'undefined') {
+        throw new Error('Three.js library not loaded or blocked');
+      }
+      if (!isWebGLAvailable()) {
+        throw new Error('WebGL is not supported or hardware acceleration disabled');
+      }
+
+      initThree();
+      is3DActive = true;
+      threeReady = true;
+      console.log('[Billu Saloon] Three.js 3D engine initialized successfully.');
+    } catch (err) {
+      console.error('[Billu Saloon] 3D initialization failed, falling back gracefully:', err.message);
+      activateFallbackMode(err.message);
+      dismissLoadingScreen('fallback-after-error');
+      return;
+    }
+
+    // 10.4 Initialize Camera Director & Render Loop
+    if (threeReady) {
+      try {
+        initCameraDirector();
+        animate();
+        // Dismiss loading screen quickly once 3D is active
+        setTimeout(() => {
+          dismissLoadingScreen('3d-active');
+        }, 1200);
+      } catch (directorErr) {
+        console.warn('[Billu Saloon] Director initialization notice:', directorErr);
+        dismissLoadingScreen('3d-partial');
+      }
+    }
+  }
+
+  // Safe DOM ready bootstrap
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApplication);
+  } else {
+    initializeApplication();
+  }
 
 })();

@@ -493,8 +493,13 @@
   <!-- Toast Notification Container -->
   <div id="toast-container"></div>
 
-  <!-- Three.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
+  <!-- Three.js CDN with Secondary Fallback -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"><\\/script>');
+    }
+  </script>
   
   <!-- GSAP Core CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
