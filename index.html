@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billu Saloon | Luxury 3D Barber Shop Experience</title>
+  <meta name="description" content="Enter Billu Saloon — a cinematic 3D barbershop combining traditional craftsmanship, razor precision, and bespoke luxury grooming.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💈</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loading Veil -->
+  <div id="loading-veil">
+    <div class="loader-emblem"></div>
+    <div class="loader-title">Billu Saloon</div>
+    <div class="loader-subtitle">Loading 3D Atmosphere...</div>
+  </div>
+
+  <!-- Fullscreen WebGL 3D Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- HUD & Narrative Overlay Layer -->
+  <div id="app-overlay">
+
+    <!-- Floating Navigation Header -->
+    <header class="site-header">
+      <a href="#hero" class="brand-logo">
+        <div class="brand-icon-wrap">
+          <i class="fa-solid fa-scissors"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">BILLU SALOON</span>
+          <span class="brand-tag">Est. 2011 • Master Grooming</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero" class="nav-link active">Experience</a></li>
+        <li><a href="#craft" class="nav-link">The Craft</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#atmosphere" class="nav-link">Atmosphere</a></li>
+        <li><a href="#booking" class="nav-link">VIP Booking</a></li>
+      </ul>
+
+      <!-- Action Controls -->
+      <div class="header-actions">
+        <!-- Web Audio Ambient Hum Toggle -->
+        <button class="btn-audio" id="audio-toggle-btn" title="Toggle Ambient Audio" aria-label="Toggle Salon Audio">
+          <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
+        </button>
+
+        <button class="btn-gold" id="header-book-btn">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>Book Chair</span>
+        </button>
+
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===================================================================
+           Section 1: Hero — The Pinnacle of Grooming
+           =================================================================== -->
+      <section id="hero" class="narrative-section">
+        <div class="container-hud">
+          <div class="hero-content interactive-panel">
+            <div class="hero-pill-badge">
+              <i class="fa-solid fa-crown"></i>
+              <span>Heritage Craftsmanship • Modern Distinction</span>
+            </div>
+            
+            <h1 class="hero-title">
+              <span class="gold-gradient">The Pinnacle of</span>
+              <span class="cyan-stroke">Master Grooming</span>
+            </h1>
+
+            <p class="hero-description">
+              Step into Billu Saloon. Where classic hot-towel straight razor traditions merge with architectural contemporary styling. Every cut is an artisanal statement of confidence and masculine elegance.
+            </p>
+
+            <div class="hero-cta-group">
+              <button class="btn-gold" id="hero-book-btn">
+                <span>Reserve Your Chair</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <a href="#services" class="btn-outline">
+                <span>Explore Services</span>
+              </a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="stat-item">
+                <span class="stat-num">15+</span>
+                <span class="stat-label">Years of Mastery</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">28k+</span>
+                <span class="stat-label">Signature Cuts</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">4.9★</span>
+                <span class="stat-label">Client Distinction</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-prompt" id="scroll-prompt">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <span>Scroll To Explore</span>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section 2: The Craft — Artisanal Steel & Heritage Tools
+           =================================================================== -->
+      <section id="craft" class="narrative-section">
+        <div class="container-hud">
+          <div class="craft-grid">
+            <div class="craft-card-hud interactive-panel">
+              <span class="section-label">Artisanal Mastery</span>
+              <h2 class="section-title">Forged in Steel. Honed with Care.</h2>
+              <p class="section-desc">
+                In our hands, grooming is an art form. We utilize high-carbon Japanese steel shears, hollow-ground straight razors stropped on genuine leather, and botanical infusions formulated for skin vitality.
+              </p>
+
+              <div class="tools-spec-list">
+                <div class="tool-spec-item">
+                  <div class="tool-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  </div>
+                  <div class="tool-info">
+                    <h4>Mirror Polish Shears</h4>
+                    <p>Convex-edge titanium-coated Japanese shears for frictionless, surgical precision hair sculpting.</p>
+                  </div>
+                </div>
+
+                <div class="tool-spec-item">
+                  <div class="tool-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </div>
+                  <div class="tool-info">
+                    <h4>Traditional Cut-Throat Razor</h4>
+                    <p>Single-bevel straight razors delivering the closest, smoothest shave humanly achievable.</p>
+                  </div>
+                </div>
+
+                <div class="tool-spec-item">
+                  <div class="tool-icon">
+                    <i class="fa-solid fa-fire-burner"></i>
+                  </div>
+                  <div class="tool-info">
+                    <h4>Eucalyptus Hot Towel Steam</h4>
+                    <p>Therapeutic steam compresses that soften follicles and awaken the senses prior to shaving.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right side intentionally uncluttered for 3D Camera Focus on Shears & Razor -->
+            <div></div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section 3: Services — Bespoke Grooming Menu
+           =================================================================== -->
+      <section id="services" class="narrative-section">
+        <div class="container-hud">
+          <div class="services-header interactive-panel">
+            <span class="section-label">Curated Offerings</span>
+            <h2 class="section-title">Signature Services</h2>
+            <p class="section-desc">
+              Every appointment includes a comprehensive consultation, scalp therapy, and personalized styling recommendations.
+            </p>
+          </div>
+
+          <div class="services-grid interactive-panel">
+            <!-- Service 1 -->
+            <div class="service-card">
+              <div class="service-card-top">
+                <div class="service-badge-row">
+                  <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
+                  <span class="service-duration">45 Minutes</span>
+                </div>
+                <h3 class="service-title">The Master Haircut</h3>
+                <p class="service-desc">Precision shear cut, skin-tapered fade, straight razor nape clean-up, and invigorating wash.</p>
+                <ul class="service-features">
+                  <li><i class="fa-solid fa-check"></i> Personal style consultation</li>
+                  <li><i class="fa-solid fa-check"></i> Scalp wash & conditioning</li>
+                  <li><i class="fa-solid fa-check"></i> Matte finish pomade styling</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <div class="service-price">$45 <span>/ session</span></div>
+                <button class="btn-book-service" data-service="The Master Haircut" data-price="45">Select</button>
+              </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+              <div class="service-card-top">
+                <div class="service-badge-row">
+                  <div class="service-icon"><i class="fa-solid fa-hand-holding-droplet"></i></div>
+                  <span class="service-duration">40 Minutes</span>
+                </div>
+                <h3 class="service-title">Royal Razor Shave</h3>
+                <p class="service-desc">A timeless ritual with pre-shave oils, three hot steamed towels, warm lather, and chilled aftershave splash.</p>
+                <ul class="service-features">
+                  <li><i class="fa-solid fa-check"></i> Badger-bristle lathering</li>
+                  <li><i class="fa-solid fa-check"></i> Double-pass straight blade</li>
+                  <li><i class="fa-solid fa-check"></i> Cold towel pore constriction</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <div class="service-price">$40 <span>/ session</span></div>
+                <button class="btn-book-service" data-service="Royal Razor Shave" data-price="40">Select</button>
+              </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+              <div class="service-card-top">
+                <div class="service-badge-row">
+                  <div class="service-icon"><i class="fa-solid fa-user-tie"></i></div>
+                  <span class="service-duration">35 Minutes</span>
+                </div>
+                <h3 class="service-title">Beard Sculpt & Contour</h3>
+                <p class="service-desc">Architectural shaping, razor edge alignment, hot lather treatment, and organic cedarwood beard oil massage.</p>
+                <ul class="service-features">
+                  <li><i class="fa-solid fa-check"></i> Freehand clipper sculpture</li>
+                  <li><i class="fa-solid fa-check"></i> Cheek & throat razor line</li>
+                  <li><i class="fa-solid fa-check"></i> Deep conditioning butter</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <div class="service-price">$35 <span>/ session</span></div>
+                <button class="btn-book-service" data-service="Beard Sculpt & Contour" data-price="35">Select</button>
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card">
+              <div class="service-card-top">
+                <div class="service-badge-row">
+                  <div class="service-icon"><i class="fa-solid fa-crown"></i></div>
+                  <span class="service-duration">90 Minutes</span>
+                </div>
+                <h3 class="service-title">Billu VIP Full Suite</h3>
+                <p class="service-desc">The ultimate gentleman's indulgence: Master cut, royal straight razor shave, facial massage, and styling cocktail.</p>
+                <ul class="service-features">
+                  <li><i class="fa-solid fa-check"></i> Complete head & face makeover</li>
+                  <li><i class="fa-solid fa-check"></i> Exfoliating facial treatment</li>
+                  <li><i class="fa-solid fa-check"></i> Complimentary craft beverage</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <div class="service-price">$95 <span>/ session</span></div>
+                <button class="btn-book-service" data-service="Billu VIP Full Suite" data-price="95">Select</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section 4: Atmosphere — Heritage, Mirror & Architecture
+           =================================================================== -->
+      <section id="atmosphere" class="narrative-section">
+        <div class="container-hud">
+          <div class="space-container">
+            <div></div> <!-- Left opening for 3D Camera focus on rotating barber pole and mirror -->
+
+            <div class="space-card interactive-panel">
+              <span class="section-label">The Atmosphere</span>
+              <h2 class="section-title">An Sanctuary for the Modern Gentleman</h2>
+              <blockquote class="quote-block">
+                "We don't just cut hair; we sculpt confidence. When you leave our chair, you step back into the world as your highest caliber self."
+              </blockquote>
+              <p class="section-desc">
+                From our hand-stitched leather barber chairs to the subtle scent of sandalwood and genuine exposed brick, every detail of Billu Saloon was constructed to provide an unhurried, distinguished retreat.
+              </p>
+
+              <div class="info-cards-grid">
+                <div class="info-card">
+                  <h4><i class="fa-solid fa-clock"></i> Hours</h4>
+                  <p>Mon - Sat: 9:00 AM – 8:30 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
+                </div>
+                <div class="info-card">
+                  <h4><i class="fa-solid fa-location-dot"></i> Studio</h4>
+                  <p>44 Vintage Boulevard, Heritage Quarter, Suite 101</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section 5: VIP Booking Portal — Interactive Reservation
+           =================================================================== -->
+      <section id="booking" class="narrative-section booking-section">
+        <div class="container-hud">
+          <div class="booking-hero-card interactive-panel">
+            <span class="section-label">VIP Chair Reservation</span>
+            <h2 class="section-title">Claim Your Throne</h2>
+            <p class="section-desc">
+              Experience the unmatched luxury of Billu Saloon. Appointments are scheduled with generous buffer times to guarantee you receive the artisan devotion you deserve.
+            </p>
+
+            <div class="booking-action-box">
+              <button class="btn-gold" id="open-booking-modal-btn">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Open Appointment Configurator</span>
+              </button>
+              <a href="tel:+18005552455" class="btn-outline">
+                <i class="fa-solid fa-phone"></i>
+                <span>Direct Concierge</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-brand">BILLU SALOON • ARCHITECTURAL GROOMING</div>
+      <div class="footer-copy">© 2026 Billu Saloon Ltd. All rights reserved. Crafted with Three.js & GSAP.</div>
+      <div class="footer-socials">
+        <a href="#instagram" class="social-link" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#twitter" class="social-link" title="Twitter" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#facebook" class="social-link" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- ===================================================================
+       Interactive Appointment Booking Modal
+       =================================================================== -->
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Booking Form -->
+      <div id="booking-form-wrapper">
+        <div class="modal-header">
+          <h3 class="modal-title">Reserve Your Service</h3>
+          <p class="modal-subtitle">Configure your bespoke grooming session with our master barbers.</p>
+        </div>
+
+        <form id="appointment-form">
+          <!-- Service Selection -->
+          <div class="form-group">
+            <label class="form-label" for="selected-service">Selected Service</label>
+            <select id="selected-service" class="form-select" required>
+              <option value="The Master Haircut ($45)">The Master Haircut — $45 (45 min)</option>
+              <option value="Royal Razor Shave ($40)">Royal Razor Shave — $40 (40 min)</option>
+              <option value="Beard Sculpt & Contour ($35)">Beard Sculpt & Contour — $35 (30 min)</option>
+              <option value="Billu VIP Full Suite ($95)">Billu VIP Full Suite — $95 (90 min)</option>
+            </select>
+          </div>
+
+          <!-- Master Barber Selection -->
+          <div class="form-group">
+            <label class="form-label">Choose Master Barber</label>
+            <div class="barber-pills-row" id="barber-selection-row">
+              <div class="barber-pill selected" data-barber="Billu (Founder)">
+                <span class="name">Billu</span>
+                <span class="role">Founder & Master Craftsman</span>
+              </div>
+              <div class="barber-pill" data-barber="Marcus Vance">
+                <span class="name">Marcus Vance</span>
+                <span class="role">Beard & Straight Razor Spec.</span>
+              </div>
+              <div class="barber-pill" data-barber="Elena Rossi">
+                <span class="name">Elena Rossi</span>
+                <span class="role">Texture & Precision Fade Spec.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date and Time -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="booking-date">Date</label>
+              <input type="date" id="booking-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Available Time</label>
+              <div class="time-slots-grid" id="time-slots">
+                <button type="button" class="time-slot-btn selected">10:00 AM</button>
+                <button type="button" class="time-slot-btn">11:30 AM</button>
+                <button type="button" class="time-slot-btn">01:00 PM</button>
+                <button type="button" class="time-slot-btn">02:30 PM</button>
+                <button type="button" class="time-slot-btn">04:00 PM</button>
+                <button type="button" class="time-slot-btn">05:30 PM</button>
+                <button type="button" class="time-slot-btn">07:00 PM</button>
+                <button type="button" class="time-slot-btn">08:00 PM</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Client Details -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="client-name">Your Full Name</label>
+              <input type="text" id="client-name" class="form-input" placeholder="e.g. Alexander Cole" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="client-phone">Phone Number</label>
+              <input type="tel" id="client-phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="client-email">Email Address</label>
+            <input type="email" id="client-email" class="form-input" placeholder="alexander@example.com" required>
+          </div>
+
+          <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.95rem; margin-top: 10px;">
+            <span>Confirm & Lock Appointment</span>
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Confirmation State View -->
+      <div id="booking-confirmation" class="confirmation-card">
+        <div class="confirm-icon-wrap">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="modal-title">Appointment Confirmed</h3>
+        <p class="modal-subtitle">Your chair has been reserved at Billu Saloon.</p>
+
+        <div class="confirm-details-box">
+          <div class="confirm-row">
+            <span>Reference ID:</span>
+            <span id="confirm-ref">#BLU-88219</span>
+          </div>
+          <div class="confirm-row">
+            <span>Client:</span>
+            <span id="confirm-client">Alexander Cole</span>
+          </div>
+          <div class="confirm-row">
+            <span>Service:</span>
+            <span id="confirm-service">The Master Haircut</span>
+          </div>
+          <div class="confirm-row">
+            <span>Barber:</span>
+            <span id="confirm-barber">Billu (Founder)</span>
+          </div>
+          <div class="confirm-row">
+            <span>Schedule:</span>
+            <span id="confirm-datetime">Sept 15, 2026 at 10:00 AM</span>
+          </div>
+        </div>
+
+        <button class="btn-gold" id="confirm-done-btn" style="margin-top: 10px;">
+          <span>Return to Salon Experience</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js"></script>
+  
+  <!-- GSAP Core CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+  <!-- GSAP ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Application Controller -->
+  <script src="app.js"></script>
+</body>
+</html>
