@@ -52,7 +52,10 @@
         <li><a href="#hero" class="nav-link active">Experience</a></li>
         <li><a href="#craft" class="nav-link">The Craft</a></li>
         <li><a href="#services" class="nav-link">Services</a></li>
-        <li><a href="#atmosphere" class="nav-link">Atmosphere</a></li>
+        <li><a href="#lookbook" class="nav-link">Lookbook</a></li>
+        <li><a href="#transformation" class="nav-link">Transformation</a></li>
+        <li><a href="#team" class="nav-link">Master Barbers</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
         <li><a href="#booking" class="nav-link">VIP Booking</a></li>
       </ul>
 
@@ -287,6 +290,326 @@
 
 
       <!-- ===================================================================
+           Section: Hairstyle Lookbook & Style Catalog
+           =================================================================== -->
+      <section id="lookbook" class="narrative-section">
+        <div class="container-hud">
+          <div class="services-header interactive-panel">
+            <span class="section-label">Artisanal Style Catalog</span>
+            <h2 class="section-title">The Hairstyle Lookbook</h2>
+            <p class="section-desc">
+              Explore our signature precision cuts. Filter by style aesthetic and select your signature look for your upcoming session.
+            </p>
+
+            <!-- Category Filter Tabs -->
+            <div class="filter-pills-row" id="lookbook-filters">
+              <button type="button" class="filter-pill active" data-filter="all">All Styles</button>
+              <button type="button" class="filter-pill" data-filter="fades">Skin & Taper Fades</button>
+              <button type="button" class="filter-pill" data-filter="beards">Beard Sculpture</button>
+              <button type="button" class="filter-pill" data-filter="shaves">Royal Shaves</button>
+              <button type="button" class="filter-pill" data-filter="classic">Classic Pompadours</button>
+            </div>
+          </div>
+
+          <div class="lookbook-grid interactive-panel" id="lookbook-grid">
+            <!-- Card 1 -->
+            <div class="lookbook-card" data-category="fades">
+              <div class="lookbook-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" alt="Low Skin Drop Fade" class="lookbook-img" loading="lazy">
+                <span class="lookbook-badge">Skin Fade</span>
+              </div>
+              <div class="lookbook-info">
+                <h3 class="lookbook-title">Low Skin Drop Fade</h3>
+                <p class="lookbook-desc">Seamless gradient skin blend transitioning into a textured matte crop top with foil shaver finish.</p>
+                <div class="lookbook-action-row">
+                  <div class="lookbook-price">$45</div>
+                  <button type="button" class="btn-book-service" data-service="The Master Haircut" data-price="45">Book This Look</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="lookbook-card" data-category="classic">
+              <div class="lookbook-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=700&q=80" alt="Modern Textured Quiff" class="lookbook-img" loading="lazy">
+                <span class="lookbook-badge">Classic</span>
+              </div>
+              <div class="lookbook-info">
+                <h3 class="lookbook-title">Modern Textured Quiff</h3>
+                <p class="lookbook-desc">Sculpted volume with shear point cutting, styled with organic sea salt spray and clay pomade.</p>
+                <div class="lookbook-action-row">
+                  <div class="lookbook-price">$48</div>
+                  <button type="button" class="btn-book-service" data-service="The Master Haircut" data-price="48">Book This Look</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="lookbook-card" data-category="beards">
+              <div class="lookbook-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80" alt="Architectural Beard Contour" class="lookbook-img" loading="lazy">
+                <span class="lookbook-badge">Beard</span>
+              </div>
+              <div class="lookbook-info">
+                <h3 class="lookbook-title">Architectural Beard Contour</h3>
+                <p class="lookbook-desc">Geometric cheek lines, razor-sculpted jawline, throat taper, and deep conditioning sandalwood treatment.</p>
+                <div class="lookbook-action-row">
+                  <div class="lookbook-price">$35</div>
+                  <button type="button" class="btn-book-service" data-service="Beard Sculpt & Contour" data-price="35">Book This Look</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="lookbook-card" data-category="shaves">
+              <div class="lookbook-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1517832606589-7629c33971a6?auto=format&fit=crop&w=700&q=80" alt="Royal Straight Razor Ritual" class="lookbook-img" loading="lazy">
+                <span class="lookbook-badge">Royal Shave</span>
+              </div>
+              <div class="lookbook-info">
+                <h3 class="lookbook-title">Royal Straight Razor Ritual</h3>
+                <p class="lookbook-desc">Triple hot steamed towel prep, warm badger lather, dual-pass cut-throat blade, and chilled rosewater splash.</p>
+                <div class="lookbook-action-row">
+                  <div class="lookbook-price">$40</div>
+                  <button type="button" class="btn-book-service" data-service="Royal Razor Shave" data-price="40">Book This Look</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="lookbook-card" data-category="classic">
+              <div class="lookbook-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=700&q=80" alt="Executive Slick Pompadour" class="lookbook-img" loading="lazy">
+                <span class="lookbook-badge">Classic</span>
+              </div>
+              <div class="lookbook-info">
+                <h3 class="lookbook-title">Executive Slick Pompadour</h3>
+                <p class="lookbook-desc">Heritage gentleman's pompadour with razor-defined hard side part and high-shine water-based pomade.</p>
+                <div class="lookbook-action-row">
+                  <div class="lookbook-price">$50</div>
+                  <button type="button" class="btn-book-service" data-service="The Master Haircut" data-price="50">Book This Look</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="lookbook-card" data-category="fades">
+              <div class="lookbook-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" alt="Mid Taper & Textured Crop" class="lookbook-img" loading="lazy">
+                <span class="lookbook-badge">Skin Fade</span>
+              </div>
+              <div class="lookbook-info">
+                <h3 class="lookbook-title">Mid Taper & Textured Crop</h3>
+                <p class="lookbook-desc">Crisp temple and nape taper fade while preserving temple weight, paired with French crop fringe styling.</p>
+                <div class="lookbook-action-row">
+                  <div class="lookbook-price">$45</div>
+                  <button type="button" class="btn-book-service" data-service="The Master Haircut" data-price="45">Book This Look</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section: Real Client Before & After Transformation Slider
+           =================================================================== -->
+      <section id="transformation" class="narrative-section transformation-section">
+        <div class="container-hud">
+          <div class="transformation-container interactive-panel">
+            <span class="section-label">Real Client Transformations</span>
+            <h2 class="section-title">The Art of Reinvention</h2>
+            <p class="section-desc">
+              Witness the power of precision craftsmanship. Slide across to reveal the master transformation from unkempt to immaculate distinction.
+            </p>
+
+            <div class="slider-wrapper" id="before-after-slider">
+              <!-- Before Base Image -->
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=80" alt="Before Haircut" class="slider-img">
+              <span class="badge-tag-before">Before Cut</span>
+
+              <!-- After Clipped Overlay -->
+              <div class="slider-after-container" id="slider-after-layer">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=80" alt="After Master Styling" class="slider-img">
+                <span class="badge-tag-after">After • Sculpted</span>
+              </div>
+
+              <!-- Draggable Divider Line & Handle -->
+              <div class="slider-divider" id="slider-divider-line">
+                <div class="slider-handle-btn">
+                  <i class="fa-solid fa-arrows-left-right"></i>
+                </div>
+              </div>
+
+              <!-- Native Range Slider Controller for seamless mobile & mouse dragging -->
+              <input type="range" min="0" max="100" value="50" class="slider-native-input" id="slider-control" aria-label="Before and after comparison slider">
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section: Master Barbers & Artisanal Crew Showcase
+           =================================================================== -->
+      <section id="team" class="narrative-section">
+        <div class="container-hud">
+          <div class="services-header interactive-panel">
+            <span class="section-label">Meet The Craftsmen</span>
+            <h2 class="section-title">The Master Barbers</h2>
+            <p class="section-desc">
+              Our barbers are seasoned artisans with decades of cumulative training in heritage razor methods and contemporary editorial styling.
+            </p>
+          </div>
+
+          <div class="team-grid interactive-panel">
+            <!-- Barber 1: Billu -->
+            <div class="barber-card">
+              <div class="barber-portrait-wrap">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80" alt="Billu - Founder & Master Craftsman" class="barber-portrait-img" loading="lazy">
+              </div>
+              <div class="barber-card-body">
+                <div>
+                  <div class="barber-exp-badge"><i class="fa-solid fa-crown"></i> 15+ Years Legacy</div>
+                  <h3 class="barber-name">Billu</h3>
+                  <div class="barber-specialty">Founder & Master Craftsman</div>
+                  <p class="barber-bio">
+                    Pioneering traditional razor craft and precision shear architecture. Billu's bespoke consultations have styled over 15,000 discerning gentlemen.
+                  </p>
+                </div>
+                <button type="button" class="btn-gold btn-book-barber" data-barber="Billu (Founder)" style="width: 100%; justify-content: center;">
+                  <span>Book with Billu</span>
+                  <i class="fa-solid fa-calendar-check"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Barber 2: Marcus Vance -->
+            <div class="barber-card">
+              <div class="barber-portrait-wrap">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Marcus Vance - Lead Beard Architect" class="barber-portrait-img" loading="lazy">
+              </div>
+              <div class="barber-card-body">
+                <div>
+                  <div class="barber-exp-badge"><i class="fa-solid fa-star"></i> 8+ Years Mastery</div>
+                  <h3 class="barber-name">Marcus Vance</h3>
+                  <div class="barber-specialty">Lead Beard Architect & Razor Specialist</div>
+                  <p class="barber-bio">
+                    Specializing in hollow-ground straight razor fades, geometric beard line-ups, and revitalizing hot steam towel rituals.
+                  </p>
+                </div>
+                <button type="button" class="btn-gold btn-book-barber" data-barber="Marcus Vance" style="width: 100%; justify-content: center;">
+                  <span>Book with Marcus</span>
+                  <i class="fa-solid fa-calendar-check"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Barber 3: Elena Rossi -->
+            <div class="barber-card">
+              <div class="barber-portrait-wrap">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80" alt="Elena Rossi - Texture & Precision Fade Specialist" class="barber-portrait-img" loading="lazy">
+              </div>
+              <div class="barber-card-body">
+                <div>
+                  <div class="barber-exp-badge"><i class="fa-solid fa-scissors"></i> 6+ Years Mastery</div>
+                  <h3 class="barber-name">Elena Rossi</h3>
+                  <div class="barber-specialty">Texture & Precision Fade Specialist</div>
+                  <p class="barber-bio">
+                    Expert in street-editorial taper fades, shear point texturing, and contemporary styling suited to modern business executives.
+                  </p>
+                </div>
+                <button type="button" class="btn-gold btn-book-barber" data-barber="Elena Rossi" style="width: 100%; justify-content: center;">
+                  <span>Book with Elena</span>
+                  <i class="fa-solid fa-calendar-check"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           Section: Client Reviews & Google Social Proof
+           =================================================================== -->
+      <section id="reviews" class="narrative-section">
+        <div class="container-hud">
+          <div class="services-header interactive-panel">
+            <span class="section-label">Verified Client Praise</span>
+            <h2 class="section-title">Distinguished Reviews</h2>
+            <p class="section-desc">
+              Rated 4.9★ across 1,200+ clients. Here is what gentlemen say about the Billu Saloon experience.
+            </p>
+          </div>
+
+          <div class="reviews-grid interactive-panel">
+            <!-- Review 1 -->
+            <div class="review-card">
+              <div class="stars-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">
+                "Billu is an absolute master of his craft. The hot towel shave and scissor work was unlike any barber experience I've had in 20 years. Unhurried, meticulous, and worth every dollar."
+              </p>
+              <div class="reviewer-meta">
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar">DM</div>
+                  <div>
+                    <span class="reviewer-name">David Montgomery</span>
+                    <span class="reviewer-service">Executive VIP Suite</span>
+                  </div>
+                </div>
+                <div class="google-tag"><i class="fa-brands fa-google"></i> Verified</div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+              <div class="stars-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">
+                "The atmosphere inside the saloon is unbeatable. Moody lighting, warm leather chairs, and Marcus dialed in my beard fade to razor-sharp perfection. My go-to every two weeks."
+              </p>
+              <div class="reviewer-meta">
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar">RK</div>
+                  <div>
+                    <span class="reviewer-name">Rohan Kapoor</span>
+                    <span class="reviewer-service">Beard Sculpt & Contour</span>
+                  </div>
+                </div>
+                <div class="google-tag"><i class="fa-brands fa-google"></i> Verified</div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card">
+              <div class="stars-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">
+                "From the easy online booking to the complimentary beverage and surgical taper fade by Elena, Billu Saloon sets the benchmark for male grooming. Unmatched luxury."
+              </p>
+              <div class="reviewer-meta">
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar">SL</div>
+                  <div>
+                    <span class="reviewer-name">Samuel Lawrence</span>
+                    <span class="reviewer-service">The Master Haircut</span>
+                  </div>
+                </div>
+                <div class="google-tag"><i class="fa-brands fa-google"></i> Verified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
            Section 4: Atmosphere — Heritage, Mirror & Architecture
            =================================================================== -->
       <section id="atmosphere" class="narrative-section">
@@ -445,10 +768,16 @@
             <input type="email" id="client-email" class="form-input" placeholder="alexander@example.com" required>
           </div>
 
-          <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.95rem; margin-top: 10px;">
-            <span>Confirm & Lock Appointment</span>
-            <i class="fa-solid fa-check"></i>
-          </button>
+          <div style="display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
+            <button type="submit" class="btn-gold" style="flex: 1; justify-content: center; padding: 14px 20px; font-size: 0.92rem;">
+              <span>Confirm & Lock Chair</span>
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <button type="button" id="book-whatsapp-btn" class="btn-whatsapp" style="flex: 1; justify-content: center; padding: 14px 20px; font-size: 0.92rem;">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i>
+              <span>Book via WhatsApp</span>
+            </button>
+          </div>
         </form>
       </div>
 
@@ -483,11 +812,37 @@
           </div>
         </div>
 
-        <button class="btn-gold" id="confirm-done-btn" style="margin-top: 10px;">
-          <span>Return to Salon Experience</span>
-        </button>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a id="confirm-whatsapp-share" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Send Details via WhatsApp</span>
+          </a>
+          <button class="btn-gold" id="confirm-done-btn">
+            <span>Return to Experience</span>
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- Mobile Floating Quick-Action Bar -->
+  <div class="mobile-quick-bar">
+    <a href="tel:+918780103848" class="quick-action-link">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/918780103848?text=Hello%20Billu%20Saloon!%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer" class="quick-action-link whatsapp-action">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+    <button type="button" class="quick-action-link" id="mobile-quick-book-btn" style="background:none; border:none; cursor:pointer;">
+      <i class="fa-regular fa-calendar-check" style="color:var(--accent-gold);"></i>
+      <span>Book Chair</span>
+    </button>
+    <a href="#lookbook" class="quick-action-link">
+      <i class="fa-solid fa-images"></i>
+      <span>Lookbook</span>
+    </a>
   </div>
 
   <!-- Toast Notification Container -->

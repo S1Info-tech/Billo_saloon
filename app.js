@@ -1366,6 +1366,109 @@
       });
     }
 
+    // 7.7 Lookbook Category Filter Tabs
+    const filterPills = document.querySelectorAll('#lookbook-filters .filter-pill');
+    const lookbookCards = document.querySelectorAll('#lookbook-grid .lookbook-card');
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.getAttribute('data-filter') || 'all';
+
+        lookbookCards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        soundEngine.playScissorSnip();
+      });
+    });
+
+    // 7.8 Before/After Transformation Slider
+    const sliderInput = document.getElementById('slider-control');
+    const sliderAfterLayer = document.getElementById('slider-after-layer');
+    const sliderDividerLine = document.getElementById('slider-divider-line');
+
+    if (sliderInput && sliderAfterLayer && sliderDividerLine) {
+      sliderInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        sliderAfterLayer.style.width = `${val}%`;
+        sliderDividerLine.style.left = `${val}%`;
+      });
+    }
+
+    // 7.9 Direct Barber Selection Buttons
+    document.querySelectorAll('.btn-book-barber').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const barberName = btn.getAttribute('data-barber') || 'Billu (Founder)';
+        openBookingModal();
+        barberPills.forEach(b => b.classList.remove('selected'));
+        barberPills.forEach(p => {
+          if (p.getAttribute('data-barber') === barberName) {
+            p.classList.add('selected');
+            selectedBarber = barberName;
+          }
+        });
+      });
+    });
+
+    // 7.10 1-Click WhatsApp Booking Integration
+    const bookWhatsappBtn = document.getElementById('book-whatsapp-btn');
+    if (bookWhatsappBtn) {
+      bookWhatsappBtn.addEventListener('click', () => {
+        const clientNameInput = document.getElementById('client-name');
+        const clientPhoneInput = document.getElementById('client-phone');
+        const clientName = (clientNameInput && clientNameInput.value.trim()) || 'Gentleman';
+        const clientPhone = (clientPhoneInput && clientPhoneInput.value.trim()) || 'Not provided';
+        const chosenService = serviceSelect.options[serviceSelect.selectedIndex].text;
+        const bookingDateVal = dateInput.value;
+        const randomRef = '#BLU-' + Math.floor(10000 + Math.random() * 90000);
+
+        const waText = encodeURIComponent(
+          `Hello Billu Saloon! 💈\n\n` +
+          `I would like to book a VIP appointment:\n` +
+          `✂️ Service: ${chosenService}\n` +
+          `👑 Master Barber: ${selectedBarber}\n` +
+          `📅 Date: ${bookingDateVal}\n` +
+          `⏰ Time: ${selectedTime}\n` +
+          `👤 Name: ${clientName}\n` +
+          `📞 Phone: ${clientPhone}\n` +
+          `🔖 Ref ID: ${randomRef}\n\n` +
+          `Please confirm my appointment. Thank you!`
+        );
+
+        const waUrl = `https://wa.me/918780103848?text=${waText}`;
+
+        // Update on-screen confirmation card
+        document.getElementById('confirm-ref').textContent = randomRef;
+        document.getElementById('confirm-client').textContent = clientName;
+        document.getElementById('confirm-service').textContent = chosenService;
+        document.getElementById('confirm-barber').textContent = selectedBarber;
+        document.getElementById('confirm-datetime').textContent = `${bookingDateVal} at ${selectedTime}`;
+
+        const confirmWaLink = document.getElementById('confirm-whatsapp-share');
+        if (confirmWaLink) confirmWaLink.href = waUrl;
+
+        if (bookingFormWrapper) bookingFormWrapper.style.display = 'none';
+        if (bookingConfirmation) bookingConfirmation.classList.add('active');
+
+        soundEngine.playScissorSnip();
+        showToast('Opening WhatsApp with your booking details...');
+        window.open(waUrl, '_blank');
+      });
+    }
+
+    // 7.11 Mobile Quick Action Book Button
+    const mobileQuickBook = document.getElementById('mobile-quick-book-btn');
+    if (mobileQuickBook) {
+      mobileQuickBook.addEventListener('click', () => {
+        openBookingModal();
+      });
+    }
+
     // Scroll prompt click handler
     const scrollPrompt = document.getElementById('scroll-prompt');
     if (scrollPrompt) {
